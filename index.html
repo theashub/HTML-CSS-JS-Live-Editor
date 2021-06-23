@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<style>
+* {
+  margin: 0px;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color:#d6d4e0
+}
+bo {
+  height: 80vh;
+  display: flex;
+}
+.code-area {
+  display: flex;
+  flex-direction:column;
+  width: 50%;
+  
+}
+.code-area textarea {
+  resize: none;
+  outline: none;
+  width: 100%;
+  height: 33.33%;
+  font-size: 15px;
+  padding: 10px;
+  border:2px solid #b8a9c9;
+  border-radius:10px;
+  background-color:white
+  
+ }
+.preview-area {
+  border: 2px solid #b8a9c9;;
+  width: 50%;
+  height:100%;
+  resize: horizontal;
+  overflow: auto;
+  border-radius:10px 10px 0px 10px;
+  background-color:white
+ }
+.preview-area iframe {
+  width: 100%;
+  height:97%;
+  border: none;
+  background-color:white
+  
+}
+</style>
+<body>
+<b><center><h2>HTML/CSS/JS Editor</h2></center></b>
+<center><p>Output width size:<span class="output"></span></p></center>
+<bo>
+<div class="code-area">
+  <textarea id="htmlCode" placeholder="HTML Code" 
+            oninput="showPreview()"></textarea>
+  <textarea id="cssCode" placeholder="CSS Code" 
+            oninput="showPreview()"></textarea>
+  <textarea id="jsCode" placeholder="JavaScript Code" 
+            oninput="showPreview()"></textarea>				
+</div>
+
+<div class="preview-area">
+  <iframe id="preview-window"></iframe>
+</div>
+</bo>
+<center><p>Developed by <a href="https://mywordsanuragsingh.blogspot.com/">Anurag Singh</a> Powered by <a href="https://theashubstore.blogspot.com/">theAShub Store</a></p></center>
+
+<script>
+function showPreview(){
+  var htmlCode = document.getElementById("htmlCode").value;
+  var cssCode = "<style>"+document.getElementById("cssCode").value+"</style>";
+  var jsCode = "<scri"+"pt>"+document.getElementById("jsCode").value+"</scri"+"pt>";
+  var frame = document.getElementById("preview-window").contentWindow.document;
+  frame.open();
+  frame.write(htmlCode+cssCode+jsCode);
+  frame.close();
+}
+</script>
+	<html onclick="getHeight()">
+		
+	<script type="text/javascript">
+		function getHeight() {
+			
+			divElement = document.querySelector(".preview-area");
+	
+			elemHeight = divElement.offsetWidth;
+	
+			document.querySelector(".output").textContent
+					= elemHeight + "px";
+		}
+	</script>
+</body>
+</html>
